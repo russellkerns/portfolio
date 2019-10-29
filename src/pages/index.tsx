@@ -117,7 +117,7 @@ export default class IndexPage extends React.Component<PageProps> {
                   </ImageAndIcons>
                   <h2>About Me</h2>
                 </AboutFlex>
-                <p dangerouslySetInnerHTML={{ __html: data.about!!.edges[0].node.html }} />
+                <div dangerouslySetInnerHTML={{ __html: data.about!!.edges[0].node.html }} />
                 <hr />
                 <ProjectprojectPreviewContainer>
                   <div>
