@@ -11,7 +11,6 @@ const HeaderWrapper: any = styled.header`
   background: linear-gradient(
       -185deg,
       ${props => {
-        console.log(props);
         return rgba(darken(0.1, props.theme.colors.grey.dark), 0.6);
       }},
       ${props => rgba(lighten(0.1, props.theme.colors.grey.dark), 1)}
