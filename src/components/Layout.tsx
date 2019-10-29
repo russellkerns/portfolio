@@ -3,20 +3,24 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
 import { media } from '../utils/media';
-import split from 'lodash/split';
 import './layout.scss';
 
 const GlobalStyle = createGlobalStyle`
+  html{
+    font-size: 100%
+  }
   ::selection {
-    color: ${theme.colors.bg};
-    background: ${theme.colors.primary};
+    color: ${theme.colors.blue.light};
+    background: ${theme.colors.blue.dark};
   }
   body {
     background: ${theme.colors.bg};
+    font-size: 90%;
     color: ${theme.colors.grey.default};
     @media ${media.phone} {
       font-size: 14px;
     }
+
   }
   a {
     color: ${theme.colors.grey.dark};
@@ -24,10 +28,11 @@ const GlobalStyle = createGlobalStyle`
     transition: all ${theme.transitions.normal};
   }
   a:hover {
-    color: ${theme.colors.primary};
+    color: ${theme.colors.blue.light};
   }
   h1, h2, h3, h4 {
     color: ${theme.colors.grey.dark};
+
   }
   blockquote {
     font-style: italic;
@@ -37,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
   blockquote:before {
     content: "";
     position: absolute;
-    background: ${theme.colors.primary};
+    background: ${theme.colors.blue.dark};
     height: 100%;
     width: 6px;
     margin-left: -1.6rem;
@@ -77,21 +82,19 @@ export class Layout extends React.PureComponent<{}> {
         query={graphql`
           query LayoutQuery {
             site {
-              buildTime(formatString: "DD.MM.YYYY")
+              buildTime(formatString: "MM.DD.YYYY")
             }
           }
         `}
         render={data => (
           <ThemeProvider theme={theme}>
-            <React.Fragment>
+            <>
               <GlobalStyle />
               {children}
               <Footer>
-                &copy; {split(data.site.buildTime, '.')[2]} by Majid Hajian. All rights reserved. <br />
-                <a href="https://github.com/mhadaily/gatsby-starter-typescirpt-power-blog">GitHub Repository</a> <br />
                 <span>Last build: {data.site.buildTime}</span>
               </Footer>
-            </React.Fragment>
+            </>
           </ThemeProvider>
         )}
       />

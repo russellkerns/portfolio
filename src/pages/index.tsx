@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
-import { Layout, Wrapper, Button, Article } from '../components';
+import { Layout, Wrapper, Button, Article, SocialIcons } from '../components';
 import PageProps from '../models/PageProps';
 import Helmet from 'react-helmet';
 import config from '../../config/SiteConfig';
@@ -9,10 +9,12 @@ import { media } from '../utils/media';
 import rgba from 'polished/lib/color/rgba';
 import darken from 'polished/lib/color/darken';
 import lighten from 'polished/lib/color/lighten';
+import Img from 'gatsby-image';
 
-const Homepage = styled.main`
+const Homepage: any = styled.main`
   display: flex;
   height: 100vh;
+
   flex-direction: row;
   @media ${media.tablet} {
     height: 100%;
@@ -23,7 +25,29 @@ const Homepage = styled.main`
     flex-direction: column;
   }
 `;
+const ProjectprojectPreviewContainer: any = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const AboutImg: any = styled.div`
+  width: 9rem;
+  heigt: 9rem;
+  margin-left: -50px;
+  margin-bottom: 1rem;
+`;
 
+const ImageAndIcons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const AboutFlex: any = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+`;
 const GridRow: any = styled.div`
   flex: 1;
   display: flex;
@@ -33,11 +57,11 @@ const GridRow: any = styled.div`
     props.background
       ? `linear-gradient(
       -185deg,
-      ${rgba(darken(0.1, props.theme.colors.primary), 0.7)}, 
-      ${rgba(lighten(0.1, props.theme.colors.grey.dark), 0.9)}), url(/assets/bg.png) no-repeat`
+      ${rgba(darken(0.1, props.theme.colors.grey.dark), 0.7)},
+      ${rgba(lighten(0.1, props.theme.colors.grey.dark), 1)}), url(/assets/bg.png) no-repeat`
       : null};
   background-size: cover;
-  padding: 2rem 4rem;
+  padding: 1rem 3rem;
   color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
   h1 {
     color: ${(props: any) => (props.background ? props.theme.colors.white : null)};
@@ -51,14 +75,17 @@ const GridRow: any = styled.div`
 `;
 
 const HomepageContent: any = styled.div`
-  max-width: 30rem;
+  margin-top: 5rem;
+  max-width: 40rem;
   text-align: ${(props: any) => (props.center ? 'center' : 'left')};
 `;
 
 export default class IndexPage extends React.Component<PageProps> {
   public render() {
     const { data } = this.props;
-    const { edges, totalCount } = data.allMarkdownRemark;
+    const projectEdges = data.projects;
+    const aboutImage = data.about!!.edges[0].node.frontmatter.featuredImage.childImageSharp.fluid;
+
     return (
       <Layout>
         <Wrapper fullWidth={true}>
@@ -68,52 +95,46 @@ export default class IndexPage extends React.Component<PageProps> {
               <HomepageContent center={true}>
                 <img src={config.siteLogo} />
                 <h1>
-                  Hi. I am <br />
-                  Majid Hajian
+                  Hello, I'm <br />
+                  Russell Kerns
                 </h1>
-                <p>I write about JavaScript, Angular, Ember, React, Vue, GlimmerJs, NodeJs, Rails, Go, Gatsby and ...</p>
-                <Link to="/contact">
-                  <Button big={true}>
-                    <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1764 11q33 24 27 64l-256 1536q-5 29-32 45-14 8-31 8-11 0-24-5l-453-185-242 295q-18 23-49 23-13 0-22-4-19-7-30.5-23.5t-11.5-36.5v-349l864-1059-1069 925-395-162q-37-14-40-55-2-40 32-59l1664-960q15-9 32-9 20 0 36 11z" />
-                    </svg>
-                    Contact
-                  </Button>
-                </Link>
-                <Link to="/blog">
-                  <Button big>
-                    <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1764 11q33 24 27 64l-256 1536q-5 29-32 45-14 8-31 8-11 0-24-5l-453-185-242 295q-18 23-49 23-13 0-22-4-19-7-30.5-23.5t-11.5-36.5v-349l864-1059-1069 925-395-162q-37-14-40-55-2-40 32-59l1664-960q15-9 32-9 20 0 36 11z" />
-                    </svg>
-                    Blog
-                  </Button>
+                <p>I'm a fullstack developer and Musician</p>
+
+                <Link to="/project">
+                  <Button big>Projects</Button>
                 </Link>
               </HomepageContent>
             </GridRow>
             <GridRow>
               <HomepageContent>
-                <h2>About Me</h2>
-                <p>
-                  Though I am a results-driven front-end developer by day who have converted inactive designs to fully interactive,
-                  well-developed, accessible and standards-based user interfaces. I am completely enthusiast with a full stack environment
-                  and passionate about JavaScript world.
-                </p>
+                <AboutFlex>
+                  <ImageAndIcons>
+                    <SocialIcons />
+                    <AboutImg>
+                      <Img fluid={aboutImage} style={{ borderRadius: '50%', border: 'solid #0000ff 2px' }} />
+                    </AboutImg>
+                    <div />
+                  </ImageAndIcons>
+                  <h2>About Me</h2>
+                </AboutFlex>
+                <p dangerouslySetInnerHTML={{ __html: data.about!!.edges[0].node.html }} />
                 <hr />
-                <h2>Latest Blog</h2>
-                {edges.map(post => (
-                  <Article
-                    title={post.node.frontmatter.title}
-                    date={post.node.frontmatter.date}
-                    excerpt={post.node.excerpt}
-                    timeToRead={post.node.timeToRead}
-                    slug={post.node.fields.slug}
-                    category={post.node.frontmatter.category}
-                    key={post.node.fields.slug}
-                  />
-                ))}
-                <p className={'textRight'}>
-                  <Link to={'/blog'}>All articles ({totalCount})</Link>
-                </p>
+                <ProjectprojectPreviewContainer>
+                  <div>
+                    <h3>Latest project</h3>
+                    {projectEdges!!.edges.map((post: any) => (
+                      <Article
+                        title={post.node.frontmatter.title}
+                        date={post.node.frontmatter.date}
+                        excerpt={post.node.excerpt}
+                        slug={post.node.fields.slug}
+                        category={post.node.frontmatter.category}
+                        key={post.node.fields.slug}
+                        tech={[]}
+                      />
+                    ))}
+                  </div>
+                </ProjectprojectPreviewContainer>
               </HomepageContent>
             </GridRow>
           </Homepage>
@@ -124,7 +145,11 @@ export default class IndexPage extends React.Component<PageProps> {
 }
 export const IndexQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1) {
+    articles: allMarkdownRemark(
+      filter: { frontmatter: { category: { eq: "projects" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1
+    ) {
       totalCount
       edges {
         node {
@@ -133,10 +158,45 @@ export const IndexQuery = graphql`
           }
           frontmatter {
             title
-            date(formatString: "DD.MM.YYYY")
+            date(formatString: "MM.DD.YYYY")
             category
           }
           timeToRead
+        }
+      }
+    }
+    about: allMarkdownRemark(filter: { frontmatter: { title: { eq: "about" } } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          html
+        }
+      }
+    }
+    projects: allMarkdownRemark(
+      filter: { frontmatter: { category: { eq: "Projects" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            date(formatString: "MM.DD.YYYY")
+            category
+          }
         }
       }
     }

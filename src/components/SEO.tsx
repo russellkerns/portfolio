@@ -29,13 +29,13 @@ export const SEO = (props: SEO) => {
     image = config.siteBanner;
   }
   image = config.siteUrl + realPrefix + image;
-  const blogURL = config.siteUrl + config.pathPrefix;
+  const projectURL = config.siteUrl + config.pathPrefix;
   let schemaOrgJSONLD = [
     {
       '@context': 'http://schema.org',
       '@type': 'WebSite',
-      '@id': blogURL,
-      url: blogURL,
+      '@id': projectURL,
+      url: projectURL,
       name: title,
       alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
     },
@@ -44,7 +44,7 @@ export const SEO = (props: SEO) => {
     schemaOrgJSONLD = [
       {
         '@context': 'http://schema.org',
-        '@type': 'BlogPosting',
+        '@type': 'projectPosting',
         // @ts-ignore
         '@id': postURL,
         // @ts-ignore
@@ -71,10 +71,10 @@ export const SEO = (props: SEO) => {
             url: config.siteUrl + realPrefix + config.siteLogo,
           },
         },
-        isPartOf: blogURL,
+        isPartOf: projectURL,
         mainEntityOfPage: {
           '@type': 'WebSite',
-          '@id': blogURL,
+          '@id': projectURL,
         },
       },
     ];
@@ -88,7 +88,7 @@ export const SEO = (props: SEO) => {
       <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
       <meta property="og:locale" content={config.ogLanguage} />
       <meta property="og:site_name" content={config.ogSiteName ? config.ogSiteName : ''} />
-      <meta property="og:url" content={postSEO ? postURL : blogURL} />
+      <meta property="og:url" content={postSEO ? postURL : projectURL} />
       {postSEO ? <meta property="og:type" content="article" /> : null}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

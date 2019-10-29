@@ -24,11 +24,21 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-lodash',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'post',
-        path: `${__dirname}/blog`,
+        name: 'about',
+        path: `${__dirname}/about`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'projects',
+        path: `${__dirname}/projects`,
       },
     },
     {
@@ -75,5 +85,5 @@ module.exports = {
         icon: config.favicon,
       },
     },
-  ]
+  ],
 };

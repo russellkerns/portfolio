@@ -4,13 +4,17 @@ import { darken, lighten } from 'polished';
 import rgba from 'polished/lib/color/rgba';
 import { media } from '../utils/media';
 import config from '../../config/SiteConfig';
+import theme from '../../config/Theme';
 
 const HeaderWrapper: any = styled.header`
   position: relative;
   background: linear-gradient(
       -185deg,
-      ${props => rgba(darken(0.1, props.theme.colors.primary), 0.6)},
-      ${props => rgba(lighten(0.1, props.theme.colors.grey.dark), 0.8)}
+      ${props => {
+        console.log(props);
+        return rgba(darken(0.1, props.theme.colors.grey.dark), 0.6);
+      }},
+      ${props => rgba(lighten(0.1, props.theme.colors.grey.dark), 1)}
     ),
     url(${(props: any) => props.banner}) no-repeat;
   background-size: cover;
@@ -42,7 +46,7 @@ const Content = styled.div`
     color: white;
     &:hover {
       opacity: 0.85;
-      color: white;
+      color: ${theme.colors.blue.light};
     }
   }
 `;

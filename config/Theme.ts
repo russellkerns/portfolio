@@ -8,6 +8,10 @@ const colors = {
     light: 'rgba(0, 0, 0, 0.5)',
     ultraLight: 'rgba(0, 0, 0, 0.25)',
   },
+  blue: {
+    light: '#6699ff',
+    dark: '#0000ff',
+  },
 };
 
 const transitions = {

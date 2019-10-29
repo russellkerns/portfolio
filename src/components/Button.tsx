@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import curriedDarken from 'polished/lib/color/darken';
 
 export const Button: any = styled.button`
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.blue.dark};
   border: none;
   display: inline-flex;
   align-items: center;
@@ -14,9 +14,9 @@ export const Button: any = styled.button`
   transition: all ${(props: any) => props.theme.transitions.normal};
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   &:hover {
-    background: ${(props: any) => curriedDarken(0.3, props.theme.colors.primary)};
+    background: ${(props: any) => curriedDarken(0.3, props.theme.colors.blue.dark)};
     cursor: pointer;
-    transform: translateY(-2px);
+    transform: translateY(2px);
   }
   &:focus {
     outline: none;

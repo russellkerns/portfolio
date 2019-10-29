@@ -4,6 +4,7 @@ interface Frontmatter {
   category: string;
   tags: string[];
   banner?: string;
+  featuredImage?: any;
 }
 
 export default Frontmatter;

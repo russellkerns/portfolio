@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
-import kebabCase from 'lodash/kebabCase';
 import { Layout, Wrapper, Header, Subline, SEO, PrevNext, SectionTitle, Content } from '../components';
 import config from '../../config/SiteConfig';
 import '../utils/prismjs-theme.css';
@@ -34,23 +33,12 @@ export default class PostPage extends React.PureComponent<Props> {
               <Link to="/">{config.siteTitle}</Link>
               <SectionTitle>{post.frontmatter.title}</SectionTitle>
               <Subline light={true}>
-                {post.frontmatter.date} &mdash; {post.timeToRead} Min Read &mdash; In{' '}
-                <Link to={`/categories/${kebabCase(post.frontmatter.category)}`}>{post.frontmatter.category}</Link>
+                {post.frontmatter.date} &mdash; In <Link to={`/project`}>{post.frontmatter.category}</Link>
               </Subline>
             </Header>
             <Wrapper>
               <Content>
                 <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
-                {post.frontmatter.tags ? (
-                  <Subline>
-                    Tags: &#160;
-                    {post.frontmatter.tags.map((tag, i) => (
-                      <Link key={i} to={`/tags/${kebabCase(tag)}`}>
-                        <strong>{tag}</strong> {i < post.frontmatter.tags.length - 1 ? `, ` : ``}
-                      </Link>
-                    ))}
-                  </Subline>
-                ) : null}
                 <PrevNext prev={prev} next={next} />
               </Content>
             </Wrapper>
@@ -70,10 +58,16 @@ export const postQuery = graphql`
       }
       frontmatter {
         title
-        date(formatString: "DD.MM.YYYY")
+        date(formatString: "MM.DD.YYYY")
         category
-        tags
         banner
+        featuredImage {
+          childImageSharp {
+            fluid(maxWidth: 800) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
       timeToRead
     }

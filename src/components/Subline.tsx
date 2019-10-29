@@ -22,4 +22,5 @@ export const Subline: any = styled.div`
   font-size: ${(props: Props) => props.theme.fontSize.small};
   ${(props: Props) => props.light && `color: ${rgba(props.theme.colors.white, 0.7)}`};
   ${(props: Props) => props.sectionTitle && 'text-align: center'};
+  width: 15rem;
 `;
