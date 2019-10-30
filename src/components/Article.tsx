@@ -15,8 +15,8 @@ const Post = styled.article`
   @media (max-width: 900px) {
     width: 20rem;
   }
-  @media (max-width: 350px) {
-    width: 12rem;
+  @media (max-width: 400px) {
+    width: 15rem;
   }
 `;
 
