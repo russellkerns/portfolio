@@ -16,7 +16,7 @@ const Post = styled.article`
     width: 20rem;
   }
   @media (max-width: 400px) {
-    width: 15rem;
+    width: 16.5rem;
   }
 `;
 

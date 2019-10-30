@@ -32,8 +32,8 @@ const ProjectImage = styled(Img)`
   height: 15rem;
   border-radius: 1rem;
   @media (max-width: 400px) {
-    width: 13.5rem;
-    height: 9rem;
+    width: 15rem;
+    height: 11rem;
   }
 `;
 
