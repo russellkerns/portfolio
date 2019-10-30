@@ -79,7 +79,7 @@ export class Article extends React.PureComponent<Props> {
         <ButtonContainter>
           <Title>
             <Initiale>{firstChar}</Initiale>
-            <h3 style={{ fontSize: '1.5rem', margin: 0 }}>{title}</h3>
+            <div style={{ fontSize: '1.5rem', margin: 0 }}>{title}</div>
           </Title>
           <SocialButtons youtube={youtube} gitHub={gitHub} />
         </ButtonContainter>
@@ -90,8 +90,8 @@ export class Article extends React.PureComponent<Props> {
         <Excerpt>{excerpt}</Excerpt>
         <WidgetContainer>
           {tech!!.length
-            ? tech!!.map((techNode: any) => {
-                return <TechWidget techName={techNode} key={techNode.techName} />;
+            ? tech!!.map((techNode: any, index) => {
+                return <TechWidget techName={techNode} key={index} />;
               })
             : null}
         </WidgetContainer>
