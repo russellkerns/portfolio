@@ -16,16 +16,6 @@ const Title = styled.h2`
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
   margin-bottom: 0.75rem;
 `;
-
-const Initiale = styled.span`
-  position: absolute;
-  font-size: 4rem;
-  transform: translate(-50%, -50%);
-  opacity: 0.2;
-  user-select: none;
-  z-index: -1;
-`;
-
 interface Props {
   title: string;
   date: string;
@@ -38,12 +28,10 @@ interface Props {
 export class Project extends React.PureComponent<Props> {
   public render() {
     const { title, date } = this.props;
-    const firstChar = title.charAt(0);
 
     return (
       <Post>
         <Title>
-          <Initiale>{firstChar}</Initiale>
           <AniLink style={{ fontSize: '1.5rem' }} swipe to="/projects">
             {title}
           </AniLink>

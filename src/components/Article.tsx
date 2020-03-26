@@ -26,15 +26,6 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const Initiale = styled.span`
-  position: absolute;
-  font-size: 3rem;
-  transform: translate(-40%, -40%);
-  opacity: 0.2;
-  user-select: none;
-  z-index: -1;
-`;
-
 const Excerpt = styled.p`
   grid-column: -1 / 1;
   margin-top: 1rem;
@@ -72,13 +63,11 @@ interface Props {
 export class Article extends React.PureComponent<Props> {
   public render() {
     const { title, date, excerpt, category, tech, youtube, gitHub } = this.props;
-    const firstChar = title.charAt(0);
 
     return (
       <Post>
         <ButtonContainter>
           <Title>
-            <Initiale>{firstChar}</Initiale>
             <div style={{ fontSize: '1.5rem', margin: 0 }}>{title}</div>
           </Title>
           <SocialButtons youtube={youtube} gitHub={gitHub} />
