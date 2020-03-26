@@ -7,6 +7,7 @@ interface PageProps {
   location: Location;
   pageResources?: PageResources;
   pathContext: PathContext;
+  theme: any;
 }
 
 export default PageProps;

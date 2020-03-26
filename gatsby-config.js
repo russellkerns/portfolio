@@ -26,6 +26,7 @@ module.exports = {
     'gatsby-plugin-lodash',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-transition-link',
 
     {
       resolve: 'gatsby-source-filesystem',

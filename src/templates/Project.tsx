@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { Layout, Article, Wrapper, SectionTitle, Header, Content, Pagination } from '../components';
 import Helmet from 'react-helmet';
 import config from '../../config/SiteConfig';
@@ -48,7 +49,9 @@ export default class ProjectPage extends React.Component<Props> {
       <Layout>
         <Helmet title={`project | ${config.siteTitle}`} />
         <Header>
-          <Link to="/">{config.siteTitle}</Link>
+          <AniLink cover to="/" bg="black">
+            {config.siteTitle}
+          </AniLink>
           <SectionTitle uppercase={true}>Projects</SectionTitle>
         </Header>
         <Wrapper>

@@ -8,7 +8,6 @@ import curriedDarken from 'polished/lib/color/darken';
 export const PaginationContainer = styled.div`
   text-align: center;
   margin: 2rem;
-  }
 `;
 
 export const PaginationContent = styled.div`
@@ -16,7 +15,7 @@ export const PaginationContent = styled.div`
     padding: 0 2.5rem;
     border-radius: 3.5rem;
     background-color: #eee;
-    
+
      @media ${media.phone} {
       padding: 0 1rem;
      }
@@ -34,11 +33,11 @@ export const PaginationContent = styled.div`
         background-color: ${curriedDarken(0.2, theme.colors.primary)};
         color: ${theme.colors.white};
       }
-      
+
       &.prev {
         margin-left: -1.5rem;
       }
-      
+
       &.next {
         margin-right: -1.5rem;
       }
@@ -48,7 +47,7 @@ export const PaginationContent = styled.div`
         background-color: transparent;
         color: ${curriedDarken(0.2, theme.colors.primary)};
       }
-      
+
 
       @media ${media.tablet} {
         padding: 0 1.4rem;

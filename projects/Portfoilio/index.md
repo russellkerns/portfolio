@@ -8,4 +8,4 @@ featuredImage: portfolio.png
 gitHub: 'https://github.com/russellkerns/portfolio'
 ---
 
-###Portfolio Website built with TypeScript and GatsbyJS
+###Portfolio Website built with TypeScript and GatsbyJS with responsive design

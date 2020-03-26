@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import _ from 'lodash';
 import { Subline } from './Subline';
 import TechWidget from './TechWidget';
@@ -85,7 +85,10 @@ export class Article extends React.PureComponent<Props> {
         </ButtonContainter>
         <Subline>
           {date} &mdash; In
-          <Link to={`/project`}> {category}</Link>
+          <AniLink to={`/project`} paintDrip color="black">
+            {' '}
+            {category}
+          </AniLink>
         </Subline>
         <Excerpt>{excerpt}</Excerpt>
         <WidgetContainer>

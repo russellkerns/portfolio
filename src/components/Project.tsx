@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import _ from 'lodash';
 import { Subline } from './Subline';
 
@@ -44,9 +44,9 @@ export class Project extends React.PureComponent<Props> {
       <Post>
         <Title>
           <Initiale>{firstChar}</Initiale>
-          <Link style={{ fontSize: '1.5rem' }} to={`/projects`}>
+          <AniLink style={{ fontSize: '1.5rem' }} swipe to="/projects">
             {title}
-          </Link>
+          </AniLink>
         </Title>
         <Subline>{date}</Subline>
       </Post>

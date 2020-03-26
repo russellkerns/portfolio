@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
+import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import styled from 'styled-components';
 import { Layout, Wrapper, Button, Article, SocialIcons } from '../components';
 import PageProps from '../models/PageProps';
@@ -82,7 +83,7 @@ const HomepageContent: any = styled.div`
 
 export default class IndexPage extends React.Component<PageProps> {
   public render() {
-    const { data } = this.props;
+    const { data, theme } = this.props;
     const projectEdges = data.projects;
     const aboutImage = data.about!!.edges[0].node.frontmatter.featuredImage.childImageSharp.fluid;
 
@@ -100,9 +101,9 @@ export default class IndexPage extends React.Component<PageProps> {
                 </h1>
                 <p>I'm a fullstack developer and Musician</p>
 
-                <Link to="/project">
+                <AniLink paintDrip to="/project" color={'#72cc96'}>
                   <Button big>Projects</Button>
-                </Link>
+                </AniLink>
               </HomepageContent>
             </GridRow>
             <GridRow>
