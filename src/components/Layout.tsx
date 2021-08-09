@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '../../config/Theme';
@@ -73,31 +73,25 @@ const Footer = styled.footer`
   }
 `;
 
-export class Layout extends React.PureComponent<{}> {
-  public render() {
-    const { children } = this.props;
-
-    return (
-      <StaticQuery
-        query={graphql`
-          query LayoutQuery {
-            site {
-              buildTime(formatString: "MM.DD.YYYY")
-            }
-          }
-        `}
-        render={data => (
-          <ThemeProvider theme={theme}>
-            <>
-              <GlobalStyle />
-              {children}
-              <Footer>
-                <span>Last build: {data.site.buildTime}</span>
-              </Footer>
-            </>
-          </ThemeProvider>
-        )}
-      />
-    );
-  }
-}
+export const Layout: FunctionComponent<{}> = ({ children }) => (
+  <StaticQuery
+    query={graphql`
+      query LayoutQuery {
+        site {
+          buildTime(formatString: "MM.DD.YYYY")
+        }
+      }
+    `}
+    render={data => (
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyle />
+          {children}
+          <Footer>
+            <span>Last build: {data.site.buildTime}</span>
+          </Footer>
+        </>
+      </ThemeProvider>
+    )}
+  />
+);
