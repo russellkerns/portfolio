@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+sitemap: https://power-project-typescirpt.github.com/sitemap.xml
