@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import _ from 'lodash';
@@ -60,34 +60,36 @@ interface Props {
   gitHub?: string;
 }
 
-export class Article extends React.PureComponent<Props> {
-  public render() {
-    const { title, date, excerpt, category, tech, youtube, gitHub } = this.props;
-
-    return (
-      <Post>
-        <ButtonContainter>
-          <Title>
-            <div style={{ fontSize: '1.5rem', margin: 0 }}>{title}</div>
-          </Title>
-          <SocialButtons youtube={youtube} gitHub={gitHub} />
-        </ButtonContainter>
-        <Subline>
-          {date} &mdash; In
-          <AniLink to={`/project`} paintDrip color="black">
-            {' '}
-            {category}
-          </AniLink>
-        </Subline>
-        <Excerpt>{excerpt}</Excerpt>
-        <WidgetContainer>
-          {tech!!.length
-            ? tech!!.map((techNode: any, index) => {
-                return <TechWidget techName={techNode} key={index} />;
-              })
-            : null}
-        </WidgetContainer>
-      </Post>
-    );
-  }
-}
+export const Article: FunctionComponent<Props> = ({
+  title,
+  date,
+  excerpt,
+  category,
+  tech,
+  youtube,
+  gitHub,
+}) => (
+  <Post>
+    <ButtonContainter>
+      <Title>
+        <div style={{ fontSize: '1.5rem', margin: 0 }}>{title}</div>
+      </Title>
+      <SocialButtons youtube={youtube} gitHub={gitHub} />
+    </ButtonContainter>
+    <Subline>
+      {date} &mdash; In
+      <AniLink to={`/project`} paintDrip color="black">
+        {' '}
+        {category}
+      </AniLink>
+    </Subline>
+    <Excerpt>{excerpt}</Excerpt>
+    <WidgetContainer>
+      {tech!!.length
+        ? tech!!.map((techNode: any, index) => {
+            return <TechWidget techName={techNode} key={index} />;
+          })
+        : null}
+    </WidgetContainer>
+  </Post>
+);

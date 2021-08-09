@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { SocialIcon } from 'react-social-icons';
 
@@ -20,15 +20,17 @@ interface Props {
   gitHub?: string;
   youtube?: string;
 }
-export default class SocialButtons extends React.PureComponent<Props> {
-  public render() {
-    return (
-      <>
-        <ButtonRow>
-          {this.props.gitHub ? <Button url={this.props.gitHub} /> : null}
-          {this.props.youtube ? <Button url={this.props.youtube} /> : null}
-        </ButtonRow>
-      </>
-    );
-  }
-}
+
+export const SocialButtons: FunctionComponent<Props> = ({
+  gitHub,
+  youtube,
+}) => (
+  <>
+    <ButtonRow>
+      {gitHub ? <Button url={gitHub} /> : null}
+      {youtube ? <Button url={youtube} /> : null}
+    </ButtonRow>
+  </>
+);
+
+export default SocialButtons;
