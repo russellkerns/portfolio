@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { darken, lighten } from 'polished';
 import rgba from 'polished/lib/color/rgba';
@@ -55,13 +55,8 @@ interface Props {
   banner?: string;
 }
 
-export class Header extends React.PureComponent<Props> {
-  public render() {
-    const { banner, children } = this.props;
-    return (
-      <HeaderWrapper banner={banner || config.defaultBg}>
-        <Content>{children}</Content>
-      </HeaderWrapper>
-    );
-  }
-}
+export const Header: FunctionComponent<Props> = ({ banner, children }) => (
+  <HeaderWrapper banner={banner || config.defaultBg}>
+    <Content>{children}</Content>
+  </HeaderWrapper>
+);
