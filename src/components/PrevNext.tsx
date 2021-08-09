@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
@@ -41,24 +41,23 @@ interface Props {
   prev: Post;
 }
 
-export class PrevNext extends React.PureComponent<Props> {
-  public render() {
-    const { prev, next } = this.props;
-    return (
-      <Wrapper>
-        {prev && (
-          <Prev>
-            <span>Previous</span>
-            <Link to={`/project/${kebabCase(prev.frontmatter.title)}`}>{prev.frontmatter.title}</Link>
-          </Prev>
-        )}
-        {next && (
-          <Next>
-            <span>Next</span>
-            <Link to={`/project/${kebabCase(next.frontmatter.title)}`}>{next.frontmatter.title}</Link>
-          </Next>
-        )}
-      </Wrapper>
-    );
-  }
-}
+export const PrevNext: FunctionComponent<Props> = ({ prev, next }) => (
+  <Wrapper>
+    {prev && (
+      <Prev>
+        <span>Previous</span>
+        <Link to={`/project/${kebabCase(prev.frontmatter.title)}`}>
+          {prev.frontmatter.title}
+        </Link>
+      </Prev>
+    )}
+    {next && (
+      <Next>
+        <span>Next</span>
+        <Link to={`/project/${kebabCase(next.frontmatter.title)}`}>
+          {next.frontmatter.title}
+        </Link>
+      </Next>
+    )}
+  </Wrapper>
+);
