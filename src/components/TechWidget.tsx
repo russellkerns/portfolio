@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 interface TechProps {
@@ -6,7 +6,8 @@ interface TechProps {
 }
 
 const TextBorder: any = styled.div`
-  border: solid ${(props: any) => (props.color ? props.theme.colors.blue.light : null)};
+  border: solid
+    ${(props: any) => (props.color ? props.theme.colors.blue.light : null)};
   border-radius: 6px;
   width: auto;
   padding: 0 0.5rem 0 0.5rem;
@@ -15,13 +16,10 @@ const TextBorder: any = styled.div`
   margin: 0 0.5rem 0.2rem 0;
 `;
 
-const TechWidget: React.FC<TechProps> = (props: TechProps) => {
-  const { techName } = props;
-  return (
-    <TextBorder color="true">
-      <p>{techName}</p>
-    </TextBorder>
-  );
-};
+const TechWidget: FunctionComponent<TechProps> = ({ techName }) => (
+  <TextBorder color="true">
+    <p>{techName}</p>
+  </TextBorder>
+);
 
 export default TechWidget;
