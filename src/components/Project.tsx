@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import AniLink from 'gatsby-plugin-transition-link/AniLink';
 import { Subline } from './Subline';
@@ -24,7 +24,7 @@ interface Props {
   category: string;
 }
 
-export const Project: FunctionComponent<Props> = ({ title, date }) => (
+export const Project = ({ title, date }: Props) => (
   <Post>
     <Title>
       <AniLink style={{ fontSize: '1.5rem' }} swipe to="/projects">

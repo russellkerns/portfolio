@@ -10,6 +10,7 @@ const ButtonRow: any = styled.div`
 interface Props {
   children?: any;
 }
+
 export const SocialIcons: FunctionComponent<Props> = () => (
   <>
     <ButtonRow>

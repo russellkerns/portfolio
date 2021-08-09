@@ -20,6 +20,7 @@ interface Props {
   gitHub?: string;
   youtube?: string;
 }
+
 export const SocialButtons: FunctionComponent<Props> = ({
   gitHub,
   youtube,
@@ -31,3 +32,5 @@ export const SocialButtons: FunctionComponent<Props> = ({
     </ButtonRow>
   </>
 );
+
+export default SocialButtons;
